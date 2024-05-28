@@ -1,0 +1,34 @@
+{% load compress %}
+{% load static %}
+{% load static tailwind_tags %}
+
+<!DOCTYPE html>
+<html lang="pt-br" class="{% if is_dark_theme %} dark {% endif %}">
+	<head>
+    	<title>Barbearia Feitosa</title>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+		{% compress css %}
+    	<link rel="stylesheet" href="{% static 'src/output.css' %}">
+    	{% endcompress %}
+
+		{% tailwind_css %}
+	</head>
+
+	<body class="bg-white dark:bg-gray-900 text-black dark:text-white">
+		<div class="mx-auto flex flex-col h-screen justify-between">
+			{% include "navbar.html" %}
+
+			<div class="flex-grow " >
+			{% block content %}
+
+			{% endblock content %}
+			</div>
+
+			{% include "footer.html" %}
+		</div>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/datepicker.min.js"></script>
+	</body>
+</html>
